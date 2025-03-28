@@ -11,11 +11,18 @@ async function main() {
 
 const Schema = mongoose.Schema;
 const listingSchema = new Schema({
-    title :String,
-    description:String,
+    title : {
+      type:String,
+      required:true,
+    },
+    description:{
+      type:String,
+      required:true,
+    },
     image : {
         type:String,
         default:"https://media.istockphoto.com/id/1899616788/photo/modern-villa.jpg?s=1024x1024&w=is&k=20&c=JA0SFZTiSYg9AuPttrfutZGbysQW8Sd41x-_8Xt11lU=",
+        set: (v)=> v==="" ? "https://media.istockphoto.com/id/1899616788/photo/modern-villa.jpg?s=1024x1024&w=is&k=20&c=JA0SFZTiSYg9AuPttrfutZGbysQW8Sd41x-_8Xt11lU=":v,
     },
     price :Number,
     location : String,
